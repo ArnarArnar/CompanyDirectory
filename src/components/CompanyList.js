@@ -77,13 +77,11 @@ function CompanyList() {
 
     const addRemoveFavCompanies = (company) => {
         if (favCompanies.some((favCompany) => favCompany.sn == company.sn)) {
-            console.log(`Before`, favCompanies);
             let temp = favCompanies.filter((favCompany) => favCompany.sn !== company.sn);
             setFavCompanies(temp);
         } else {
             setFavCompanies((oldArray) => [...oldArray, company]);
         }
-        console.log(`favCompanies`, favCompanies);
     };
 
     return (
