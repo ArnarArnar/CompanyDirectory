@@ -1,5 +1,4 @@
 import React from 'react';
-
 import CompanyItem from './CompanyItem';
 
 function CompanyList() {
@@ -9,14 +8,14 @@ function CompanyList() {
     const [error, setError] = React.useState();
 
     const handleChange = (event) => {
-        let temp = encodeURIComponent(event.target.value).toLowerCase();
+        let temp = event.target.value.toLowerCase();
         if (temp.slice(temp.length - 3) !== '%20') {
             setInput(temp);
         }
     };
 
     React.useEffect(() => {
-        (async () => {
+        const fetchData = async () => {
             const apiUrl = `http://localhost:3010/backend.php`;
 
             var myHeaders = new Headers();
@@ -34,7 +33,7 @@ function CompanyList() {
 
             try {
                 let response = await fetch(apiUrl, requestOptions);
-
+                console.log(`response`, response);
                 // Check your response for error this may not be response.error
                 if (response.status == 404) {
                     setError(404);
@@ -46,8 +45,13 @@ function CompanyList() {
             } catch (err) {
                 setError(err);
             }
-        })();
-        console.log('companies', companies);
+            console.log(`companies`, companies);
+        };
+        const timer = setTimeout(() => {
+            fetchData();
+        }, 300);
+
+        return () => clearTimeout(timer);
     }, [input]);
 
     React.useEffect(() => {
@@ -72,13 +76,18 @@ function CompanyList() {
                         <div className="relative w-full my-2 font-bold text-center text-blue800">
                             NIÐURSTÖÐUR
                         </div>
-                        <CompanyItem />
+                        {companies.length > 0
+                            ? companies.map((company) => {
+                                  return <CompanyItem key={company.sn} company={company} />;
+                              })
+                            : null}
                     </div>
 
                     <div id="search" className="w-full md:w-1/2">
                         <div className="relative w-full my-2 font-bold text-center text-blue800">
-                            Uppáhalds
+                            UPPÁHALDS
                         </div>
+                        {/* <CompanyItem /> */}
                     </div>
                 </div>
             </div>

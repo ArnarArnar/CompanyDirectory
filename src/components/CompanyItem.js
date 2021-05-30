@@ -1,20 +1,20 @@
 import React from 'react';
 import starThin from '../assets/img/star-thin.svg';
 
-export default function CompanyItem() {
+export default function CompanyItem({ company }) {
     return (
         <div className="w-full ">
-            <div id="card" className="flex p-4 bg-gray-200 rounded-lg">
+            <div id="card" className="flex p-4 mb-2 bg-gray-200 rounded-lg">
                 <div className="flex flex-col justify-between w-full ">
                     <div className="flex flex-row ">
                         <div className="self-center flex h-0 p-1.5 bg-green-500 border-2 rounded-full mr-2"></div>
                         <div className="pr-1 pt-0.5 text-lg font-bold text-blue700">
-                            Stokkur Software ehf.
+                            {company.name}
                         </div>
                     </div>
                     <div className="flex justify-between mt-1 ">
                         <div className="text-blue700">
-                            <div>Hafnarbraut 11</div>
+                            <div> {company.name}</div>
                             <div>200 Kópavogur</div>
                             <div>
                                 <span className="font-medium">kt: </span>
