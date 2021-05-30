@@ -1,0 +1,105 @@
+/**
+ * This injects Tailwind's base styles and any base styles registered by
+ * plugins.
+ */
+@tailwind base;
+
+/**
+ * This injects Tailwind's component classes and any component classes
+ * registered by plugins.
+ */
+@tailwind components;
+
+/* .body-container {
+    min-width: calc(100% - 250px);
+    @apply bg-gray-800;
+}
+
+.border-bottom-line {
+    border-bottom: #404040;
+    border-bottom-style: solid;
+    border-bottom-width: 0.01rem;
+}
+
+li > ul {
+    transform: translatex(100%) scale(0);
+}
+li:hover > ul {
+    transform: translatex(101%) scale(1);
+}
+li > button svg {
+    transform: rotate(-90deg);
+}
+li:hover > button svg {
+    transform: rotate(-270deg);
+} */
+
+.tham:hover {
+    @apply opacity-100;
+}
+
+input[type='radio'] + label span {
+    transition: background 0.1s, transform 0.1s;
+}
+input[type='radio']:hover + label span {
+    transform: scale(1.03);
+    box-shadow: 0px 0px 0px 5px rgb(200, 200, 200) inset;
+}
+
+input[type='radio']:checked + label span {
+    background-color: rgb(206, 206, 206);
+    box-shadow: 0px 0px 0px 2px rgba(51, 51, 51) inset;
+}
+
+input[type='radio']:checked + label {
+    color: rgb(235, 235, 235);
+}
+
+/**
+ * This injects Tailwind's utility classes and any utility classes registered
+ * by plugins.
+ */
+@tailwind utilities;
+
+.fade-in {
+    animation: animation-fade-in 1s;
+}
+
+.fade-out {
+    animation: animation-fade-out 1s;
+}
+
+.fade-in-fast {
+    animation: animation-fade-in 0.4s;
+}
+
+.fade-out-fast {
+    animation: animation-fade-out 0.4s;
+}
+
+@keyframes animation-fade-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes animation-fade-out {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+/**
+ * Use this directive to control where Tailwind injects the responsive
+ * variations of each utility.
+ *
+ * If omitted, Tailwind will append these classes to the very end of
+ * your stylesheet by default.
+ */
+@tailwind screens;

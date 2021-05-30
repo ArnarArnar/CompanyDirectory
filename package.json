@@ -1,0 +1,65 @@
+{
+    "name": "Web-assignment",
+    "version": "0.1.0",
+    "private": true,
+    "dependencies": {
+        "@tailwindcss/jit": "^0.1.1",
+        "@testing-library/jest-dom": "^5.11.4",
+        "@testing-library/react": "^11.1.0",
+        "@testing-library/user-event": "^12.1.10",
+        "react": "^17.0.1",
+        "react-dom": "^17.0.1",
+        "react-scripts": "4.0.2",
+        "web-vitals": "^1.0.1"
+    },
+    "peerDependencies": {
+        "react": ">=16.8.0",
+        "react-dom": ">=16.8.0"
+    },
+    "scripts": {
+        "start": "npm run watch:css && react-scripts start",
+        "build": "npm run watch:css && react-scripts build",
+        "test": "react-scripts test",
+        "eject": "react-scripts eject",
+        "lint": "eslint --fix .",
+        "format": "prettier --write './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc",
+        "watch:css": "postcss src/assets/tailwind.css -o src/assets/main.css --verbose"
+    },
+    "eslintConfig": {
+        "extends": [
+            "react-app",
+            "react-app/jest"
+        ]
+    },
+    "browserslist": {
+        "production": [
+            ">0.2%",
+            "not dead",
+            "not op_mini all"
+        ],
+        "development": [
+            "last 1 chrome version",
+            "last 1 firefox version",
+            "last 1 safari version"
+        ]
+    },
+    "devDependencies": {
+        "autoprefixer": "^10.2.5",
+        "eslint": "^7.20.0",
+        "eslint-config-prettier": "^8.3.0",
+        "eslint-plugin-jsx-a11y": "^6.4.1",
+        "eslint-plugin-prettier": "^3.4.0",
+        "eslint-plugin-react": "^7.23.2",
+        "eslint-plugin-react-hooks": "^4.2.0",
+        "eslint-plugin-simple-import-sort": "^7.0.0",
+        "postcss": "^8.2.7",
+        "postcss-cli": "^8.3.1",
+        "prettier": "^2.2.1",
+        "stylelint": "^13.12.0",
+        "stylelint-config-standard": "^21.0.0",
+        "stylelint-csstree-validator": "^1.9.0",
+        "stylelint-order": "^4.1.0",
+        "stylelint-scss": "^3.19.0",
+        "tailwindcss": "^2.0.3"
+    }
+}
