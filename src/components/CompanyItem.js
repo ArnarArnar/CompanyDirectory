@@ -1,7 +1,7 @@
 import React from 'react';
 import starThin from '../assets/img/star-thin.svg';
 
-export default function CompanyItem({ company }) {
+export default function CompanyItem({ company, sendDataToParent }) {
     var splitAddress;
     if (company.address.includes(',')) {
         splitAddress = company.address.split(',');
@@ -30,7 +30,12 @@ export default function CompanyItem({ company }) {
                             </div>
                         </div>
 
-                        <div id="favoriteContainer" className="flex h-full ml-2">
+                        <button
+                            id="favoriteContainer"
+                            className="flex h-full ml-2"
+                            onClick={() => {
+                                sendDataToParent(company);
+                            }}>
                             <div className="relative self-center pb-16 pr-16 overflow-hidden rounded">
                                 <img
                                     alt="Test"
@@ -38,7 +43,7 @@ export default function CompanyItem({ company }) {
                                     src={starThin}
                                 />
                             </div>
-                        </div>
+                        </button>
                     </div>
                 </div>
             </div>
