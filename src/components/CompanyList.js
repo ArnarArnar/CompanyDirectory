@@ -1,4 +1,6 @@
 import React from 'react';
+import useWindowDimensions from '../utils/windowDemensions';
+
 import CompanyItem from './CompanyItem';
 
 function CompanyList() {
@@ -8,6 +10,7 @@ function CompanyList() {
     const [error, setError] = React.useState();
     // eslint-disable-next-line no-unused-vars
     const [favCompanies, setFavCompanies] = React.useState([]);
+    const { width } = useWindowDimensions();
 
     const handleChange = (event) => {
         let temp = event.target.value.toLowerCase();
@@ -76,12 +79,18 @@ function CompanyList() {
     }, [input]);
 
     const addRemoveFavCompanies = (company) => {
+        console.log(window.innerHeight);
+
         if (favCompanies.some((favCompany) => favCompany.sn == company.sn)) {
             let temp = favCompanies.filter((favCompany) => favCompany.sn !== company.sn);
             setFavCompanies(temp);
         } else {
             setFavCompanies((oldArray) => [...oldArray, company]);
         }
+    };
+
+    const isInFavCompanies = (company) => {
+        return favCompanies.some((favCompany) => favCompany.sn == company.sn);
     };
 
     return (
@@ -102,33 +111,49 @@ function CompanyList() {
                         </div>
                         {companies.length > 0
                             ? companies.map((company) => {
-                                  return (
+                                  if (isInFavCompanies(company) && width > 768) {
                                       <CompanyItem
                                           key={company.sn}
                                           company={company}
                                           sendDataToParent={addRemoveFavCompanies}
-                                      />
-                                  );
+                                          list="favCompany"
+                                          favCompanies={favCompanies}
+                                      />;
+                                  } else {
+                                      return (
+                                          <CompanyItem
+                                              key={company.sn}
+                                              company={company}
+                                              sendDataToParent={addRemoveFavCompanies}
+                                              list="results"
+                                              favCompanies={favCompanies}
+                                          />
+                                      );
+                                  }
                               })
                             : null}
                     </div>
 
-                    <div id="search" className="w-full md:w-1/2">
-                        <div className="relative w-full my-2 font-bold text-center text-blue800">
-                            UPPÁHALDS
+                    {width > 768 ? (
+                        <div id="search" className="w-full md:w-1/2">
+                            <div className="relative w-full my-2 font-bold text-center text-blue800">
+                                UPPÁHALDS
+                            </div>
+                            {favCompanies.length > 0
+                                ? favCompanies.map((company) => {
+                                      return (
+                                          <CompanyItem
+                                              key={company.sn}
+                                              company={company}
+                                              sendDataToParent={addRemoveFavCompanies}
+                                              list="favCompany"
+                                              favCompanies={favCompanies}
+                                          />
+                                      );
+                                  })
+                                : null}
                         </div>
-                        {favCompanies.length > 0
-                            ? favCompanies.map((company) => {
-                                  return (
-                                      <CompanyItem
-                                          key={company.sn}
-                                          company={company}
-                                          sendDataToParent={addRemoveFavCompanies}
-                                      />
-                                  );
-                              })
-                            : null}
-                    </div>
+                    ) : null}
                 </div>
             </div>
         </div>

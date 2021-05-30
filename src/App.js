@@ -4,6 +4,7 @@ import CompanyList from './components/CompanyList';
 import MobileNav from './components/MobileNav';
 
 function App() {
+    const [showFavoritesTab, setShowFavoritesTab] = React.useState(false);
     return (
         <>
             <Header />

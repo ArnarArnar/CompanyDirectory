@@ -1,13 +1,24 @@
 import React from 'react';
 import starThin from '../assets/img/star-thin.svg';
+import starFull from '../assets/img/star-full.svg';
 
-export default function CompanyItem({ company, sendDataToParent }) {
+export default function CompanyItem({ company, sendDataToParent, list, favCompanies }) {
     var splitAddress;
     if (company.address.includes(',')) {
         splitAddress = company.address.split(',');
     } else {
         splitAddress = company.address.split('  ');
     }
+
+    const isFavored = () => {
+        console.log(`list`, list);
+        console.log(`favCompanies`, favCompanies);
+        if (list == 'favCompany') {
+            return true;
+        } else if (favCompanies.some((favCompany) => favCompany.sn == company.sn)) {
+            return true;
+        }
+    };
 
     return (
         <div className="w-full ">
@@ -37,11 +48,19 @@ export default function CompanyItem({ company, sendDataToParent }) {
                                 sendDataToParent(company);
                             }}>
                             <div className="relative self-center pb-16 pr-16 overflow-hidden rounded">
-                                <img
-                                    alt="Test"
-                                    className="absolute bottom-0 right-0 object-cover w-11/12 h--11/12 "
-                                    src={starThin}
-                                />
+                                {isFavored() ? (
+                                    <img
+                                        alt="StarFull"
+                                        className="absolute bottom-0 right-0 object-cover w-11/12 h--11/12 "
+                                        src={starFull}
+                                    />
+                                ) : (
+                                    <img
+                                        alt="StarThin"
+                                        className="absolute bottom-0 right-0 object-cover w-11/12 h--11/12 "
+                                        src={starThin}
+                                    />
+                                )}
                             </div>
                         </button>
                     </div>
