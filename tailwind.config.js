@@ -1,4 +1,5 @@
 const colors = require('tailwindcss/colors');
+const defaultTheme = require('tailwindcss/defaultTheme');
 
 module.exports = {
     purge: ['./public/**/*.html', './src/**/*.{js,jsx,ts,tsx,vue}'],
@@ -10,8 +11,12 @@ module.exports = {
                 gray: colors.trueGray,
                 grayLight: '#E2E2E2',
                 blue500: '#00B6BC',
+                blue600: '#087175',
                 blue700: '#0C6170',
                 blue800: '#0B525F'
+            },
+            fontFamily: {
+                sans: ['Roboto', ...defaultTheme.fontFamily.sans]
             },
             height: { max: 'max-content' }
         },

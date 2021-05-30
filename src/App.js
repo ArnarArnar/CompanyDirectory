@@ -1,85 +1,76 @@
 import React from 'react';
+import Header from './components/Header';
+
+import starThin from './assets/img/star-thin.svg';
+import MobileNav from './components/MobileNav';
 
 function App() {
-    const [input, setInput] = React.useState('');
-    const [companies, setCompanies] = React.useState([]);
-    const [error, setError] = React.useState();
-
-    const handleChange = (event) => {
-        let temp = encodeURIComponent(event.target.value).toLowerCase();
-        if (temp.slice(temp.length - 3) !== '%20') {
-            setInput(temp);
-        }
-    };
-
-    React.useEffect(() => {
-        (async () => {
-            const apiUrl = `http://localhost:3010/backend.php`;
-
-            var myHeaders = new Headers();
-
-            myHeaders.append('Content-Type', 'application/json');
-
-            var raw = JSON.stringify({ name: input });
-
-            var requestOptions = {
-                method: 'POST',
-                headers: myHeaders,
-                body: raw,
-                redirect: 'follow'
-            };
-
-            try {
-                let response = await fetch(apiUrl, requestOptions);
-
-                // Check your response for error this may not be response.error
-                if (response.status == 404) {
-                    setError(404);
-                    setCompanies([]);
-                } else {
-                    setError('');
-                    setCompanies(await response.json());
-                }
-            } catch (err) {
-                setError(err);
-            }
-        })();
-        console.log('companies', companies);
-    }, [input]);
-
-    React.useEffect(() => {
-        if (!input) {
-            setCompanies([]);
-        }
-    }, [input]);
+    const handleChange = () => true;
 
     return (
-        <div className="container mt-10 font-sans">
-            <div className="pt-10 mb-3">
-                <input
-                    onChange={handleChange}
-                    type="text"
-                    placeholder="Placeholder"
-                    className="relative w-full px-3 py-3 text-sm bg-white border-0 rounded shadow outline-none placeholder-blueGray-300 text-blueGray-600 focus:outline-none focus:ring"
-                />
+        <>
+            <Header />
+            <div className="flex justify-center min-h-screen bg-blue500 min-w-screen">
+                <div className="container max-w-5xl px-5 mx-auto">
+                    <div className="pt-10 mb-3">
+                        <input
+                            onChange={handleChange}
+                            type="text"
+                            placeholder="Leit"
+                            className="relative w-full px-3 py-3 text-xl border-0 rounded shadow outline-none bg-grayLight placeholder-blueGray-400 text-blue700 focus:outline-none focus:ring"
+                        />
+                    </div>
+                    <div className="block md:flex ">
+                        <div id="search" className="w-full md:pr-2 md:w-1/2">
+                            <div className="relative w-full my-2 font-bold text-center text-blue800">
+                                NIÐURSTÖÐUR
+                            </div>
+                            <div className="w-full ">
+                                <div id="card" className="flex p-4 bg-gray-200 rounded-lg">
+                                    <div className="flex flex-col justify-between w-full ">
+                                        <div className="flex flex-row ">
+                                            <div className="self-center flex h-0 p-1.5 bg-green-500 border-2 rounded-full mr-2"></div>
+                                            <div className="pr-1 pt-0.5 text-lg font-bold text-blue700">
+                                                Stokkur Software ehf.
+                                            </div>
+                                        </div>
+                                        <div className="flex justify-between mt-1 ">
+                                            <div className="text-blue700">
+                                                <div>Hafnarbraut 11</div>
+                                                <div>200 Kópavogur</div>
+                                                <div>
+                                                    <span className="font-medium">kt: </span>
+                                                    <span>3342423543543</span>
+                                                </div>
+                                            </div>
+
+                                            <div
+                                                id="favoriteContainer"
+                                                className="flex h-full ml-2">
+                                                <div className="relative self-center pb-16 pr-16 overflow-hidden rounded">
+                                                    <img
+                                                        alt="Test"
+                                                        className="absolute bottom-0 right-0 object-cover w-11/12 h--11/12 "
+                                                        src={starThin}
+                                                    />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="search" className="w-full md:w-1/2">
+                            <div className="relative w-full my-2 font-bold text-center text-blue800">
+                                Uppáhalds
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <>
-                {companies.length > 0
-                    ? companies.map((item) => {
-                          return (
-                              <div key={item.ssn}>
-                                  <div>Name: {item.name}</div>
-                                  <div>Address: {item.address}</div>
-                                  <div>Kt: {item.sn}</div>
-                              </div>
-                          );
-                      })
-                    : null}
-                {error === 404 ? (
-                    <div>Ekki fleiri niðurstöður með þessum leitarskilyrðum</div>
-                ) : null}
-            </>
-        </div>
+            <MobileNav />
+        </>
     );
 }
 export default App;
