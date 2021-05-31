@@ -3,5 +3,9 @@
     "search.label": "Leit",
     "results.label": "NIÐURSTÖÐUR",
     "favorite.label": "UPPÁHALDS",
-    "deregistered.label": "Afskráð"
+    "deregistered.label": "Afskráð",
+    "change": "BREYTA",
+    "searchOptionBoth": "Skáð og afskráð fyrirtæki",
+    "searchOptionRegistered": "Aðeins skráð fyrirtæki",
+    "searchOptionDeregistered": "Aðeins afskráð fyrirtæki"
 }

@@ -3,5 +3,9 @@
     "search.label": "Search",
     "results.label": "RESULTS",
     "favorite.label": "FAVORITE",
-    "deregistered.label": "Deregistered"
+    "deregistered.label": "Deregistered",
+    "change": "CHANGE",
+    "searchOptionBoth": "Registered and deregistered",
+    "searchOptionRegistered": "Registered only",
+    "searchOptionDeregistered": "Deregistered only"
 }

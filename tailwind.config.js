@@ -13,7 +13,8 @@ module.exports = {
                 blue500: '#00B6BC',
                 blue600: '#087175',
                 blue700: '#0C6170',
-                blue800: '#0B525F'
+                blue800: '#0B525F',
+                blue900: '#083D46'
             },
             fontFamily: {
                 sans: ['Roboto', ...defaultTheme.fontFamily.sans]

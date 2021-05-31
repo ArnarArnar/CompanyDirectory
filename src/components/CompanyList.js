@@ -2,11 +2,14 @@ import React from 'react';
 import useWindowDimensions from '../utils/windowDimensions';
 import { useTranslation } from 'react-i18next';
 
+import RadioGroupModal from './RadioGroupModal';
 import CompanyItem from './CompanyItem';
 
 function CompanyList({ showFavTab }) {
     const [input, setInput] = React.useState('');
     const [companies, setCompanies] = React.useState([]);
+    // eslint-disable-next-line no-unused-vars
+    const [searchOption, setSearchOption] = React.useState('BOTH');
     // eslint-disable-next-line no-unused-vars
     const [error, setError] = React.useState();
     // eslint-disable-next-line no-unused-vars
@@ -104,10 +107,23 @@ function CompanyList({ showFavTab }) {
         return showFavTab ? false : true;
     };
 
+    const changeSearchOption = (option) => setSearchOption(option);
+
+    const searchOptionDescription = () => {
+        switch (searchOption) {
+            case 'REGISTERED':
+                return t('searchOptionRegistered');
+            case 'DEREGISTERED':
+                return t('searchOptionDeregistered');
+            default:
+                return t('searchOptionBoth');
+        }
+    };
+
     return (
         <div className="flex justify-center min-h-screen bg-blue500 min-w-screen">
             <div className="container max-w-5xl px-5 mx-auto md:px-8">
-                <div className="pt-10 mb-3">
+                <div className="mt-6 mb-3 md:pt-10">
                     <input
                         onChange={handleChange}
                         type="text"
@@ -118,8 +134,18 @@ function CompanyList({ showFavTab }) {
                 <div className="block md:flex ">
                     {showList(false) ? (
                         <div id="search" className="w-full md:pr-4 md:w-1/2">
-                            <div className="relative w-full my-2 font-bold text-center text-blue800">
+                            <div className="relative w-full h-10 my-3 font-bold leading-tight text-center text-blue800">
                                 {t('results.label')}
+                                <div className="flex items-center justify-center">
+                                    <span className="pr-1.5 text-xs  font-medium">
+                                        <div>{searchOptionDescription()}</div>
+                                    </span>
+                                    <RadioGroupModal
+                                        searchOption={searchOption}
+                                        changeSearchOption={changeSearchOption}
+                                        style="self-center h-5  shadow px-1.5 text-xs font-black  rounded bg-grayLight text-blue900 "
+                                    />
+                                </div>
                             </div>
                             {companies.length > 0
                                 ? companies.map((company) => {
@@ -148,7 +174,7 @@ function CompanyList({ showFavTab }) {
                     ) : null}
                     {showList(true) ? (
                         <div id="favorite" className="w-full md:pl-4 md:w-1/2">
-                            <div className="relative w-full my-2 font-bold text-center text-blue800">
+                            <div className="relative w-full h-10 my-3 font-bold leading-tight text-center text-blue800">
                                 {t('favorite.label')}
                             </div>
                             {favCompanies.length > 0
