@@ -1,5 +1,6 @@
 import React from 'react';
-import useWindowDimensions from '../utils/windowDemensions';
+import useWindowDimensions from '../utils/windowDimensions';
+import { useTranslation } from 'react-i18next';
 
 import CompanyItem from './CompanyItem';
 
@@ -11,6 +12,7 @@ function CompanyList({ showFavTab }) {
     // eslint-disable-next-line no-unused-vars
     const [favCompanies, setFavCompanies] = React.useState([]);
     const { width } = useWindowDimensions();
+    const { t } = useTranslation();
 
     const handleChange = (event) => {
         let temp = event.target.value.toLowerCase();
@@ -109,15 +111,15 @@ function CompanyList({ showFavTab }) {
                     <input
                         onChange={handleChange}
                         type="text"
-                        placeholder="Leit"
-                        className="relative w-full px-3 py-3 text-xl border-0 rounded shadow outline-none bg-grayLight placeholder-blueGray-400 text-blue700 focus:outline-none focus:ring"
+                        placeholder={t('search.label')}
+                        className="relative w-full px-3 py-3 text-xl leading-normal border-0 rounded shadow outline-none bg-grayLight placeholder-blueGray-400 text-blue700 focus:outline-none focus:ring"
                     />
                 </div>
                 <div className="block md:flex ">
                     {showList(false) ? (
                         <div id="search" className="w-full md:pr-4 md:w-1/2">
                             <div className="relative w-full my-2 font-bold text-center text-blue800">
-                                NIÐURSTÖÐUR
+                                {t('results.label')}
                             </div>
                             {companies.length > 0
                                 ? companies.map((company) => {
@@ -147,7 +149,7 @@ function CompanyList({ showFavTab }) {
                     {showList(true) ? (
                         <div id="favorite" className="w-full md:pl-4 md:w-1/2">
                             <div className="relative w-full my-2 font-bold text-center text-blue800">
-                                UPPÁHALDS
+                                {t('favorite.label')}
                             </div>
                             {favCompanies.length > 0
                                 ? favCompanies.map((company) => {

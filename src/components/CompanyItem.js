@@ -1,8 +1,11 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import starThin from '../assets/img/star-thin.svg';
 import starFull from '../assets/img/star-full.svg';
 
 export default function CompanyItem({ company, sendDataToParent, list, favCompanies }) {
+    const { t } = useTranslation();
+
     var splitAddress;
     if (company.address.includes(',')) {
         splitAddress = company.address.split(',');
@@ -28,10 +31,9 @@ export default function CompanyItem({ company, sendDataToParent, list, favCompan
                         <div className="pr-1 pt-0.5 text-lg font-bold text-blue700">
                             {company.name}
                         </div>
-                        <div
-                            className={`self-center flex h-0 p-1.5 mr-1 border-2 rounded-full  ${
-                                company.active ? 'bg-green-500' : 'bg-red-500'
-                            }`}></div>
+                        <div className="text-sm font-medium text-blue700">
+                            {company.active ? '' : `${t('deregistered.label')}`}
+                        </div>
                     </div>
                     <div className="flex justify-between mt-1 ">
                         <div className="flex flex-col justify-end h-16 text-blue700">
