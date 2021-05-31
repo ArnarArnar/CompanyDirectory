@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 
 const Header = () => {
     const { t, i18n } = useTranslation();
-    const [lang, setLang] = React.useState('en');
+    const [lang, setLang] = React.useState('is');
 
     const changeLanguage = () => {
         console.log(`lang`, lang);
