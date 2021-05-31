@@ -7,10 +7,7 @@ import './i18n';
 function App() {
     const [showFavTab, setShowFavTab] = React.useState(false);
 
-    const toggleTab = (action) => {
-        console.log(`action`, action);
-        setShowFavTab(action);
-    };
+    const toggleTab = (action) => setShowFavTab(action);
 
     return (
         <Suspense fallback={null}>
