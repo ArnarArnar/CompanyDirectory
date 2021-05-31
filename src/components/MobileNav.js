@@ -20,7 +20,6 @@ export default function MobileNav({ toggleTab, showFavTab }) {
                             <path d="M23.809 21.646l-6.205-6.205c1.167-1.605 1.857-3.579 1.857-5.711 0-5.365-4.365-9.73-9.731-9.73-5.365 0-9.73 4.365-9.73 9.73 0 5.366 4.365 9.73 9.73 9.73 2.034 0 3.923-.627 5.487-1.698l6.238 6.238 2.354-2.354zm-20.955-11.916c0-3.792 3.085-6.877 6.877-6.877s6.877 3.085 6.877 6.877-3.085 6.877-6.877 6.877c-3.793 0-6.877-3.085-6.877-6.877z" />
                         </g>
                     </svg>
-                    <span className="block text-xs font-semibold text-grayLight">Leit</span>
                 </button>
                 <button
                     onClick={() => {
@@ -34,7 +33,6 @@ export default function MobileNav({ toggleTab, showFavTab }) {
                             <path d="M15.668 8.626l8.332 1.159-6.065 5.874 1.48 8.341-7.416-3.997-7.416 3.997 1.481-8.341-6.064-5.874 8.331-1.159 3.668-7.626 3.669 7.626zm-6.67.925l-6.818.948 4.963 4.807-1.212 6.825 6.068-3.271 6.069 3.271-1.212-6.826 4.964-4.806-6.819-.948-3.002-6.241-3.001 6.241z" />
                         </g>
                     </svg>
-                    <span className="block text-xs font-semibold text-grayLight">Uppáhalds</span>
                 </button>
             </div>
         </section>
