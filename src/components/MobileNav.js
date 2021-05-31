@@ -3,7 +3,6 @@ import React from 'react';
 export default function MobileNav({ toggleTab, showFavTab }) {
     console.log(`showFavTab`, showFavTab);
     return (
-        //    if shown only tablet/mobile
         <section
             id="bottom-navigation"
             className="fixed inset-x-0 bottom-0 z-10 block border-t-4 shadow bg-blue700 border-blue700 md:hidden">

@@ -8,11 +8,9 @@ import CompanyItem from './CompanyItem';
 function CompanyList({ showFavTab }) {
     const [input, setInput] = React.useState('');
     const [companies, setCompanies] = React.useState([]);
-    // eslint-disable-next-line no-unused-vars
     const [searchOption, setSearchOption] = React.useState('BOTH');
     // eslint-disable-next-line no-unused-vars
     const [error, setError] = React.useState();
-    // eslint-disable-next-line no-unused-vars
     const [favCompanies, setFavCompanies] = React.useState([]);
     const { width } = useWindowDimensions();
     const { t } = useTranslation();
@@ -44,13 +42,10 @@ function CompanyList({ showFavTab }) {
                     `http://localhost:3010/backend2.php?name=${input}&filter=${searchOption}`,
                     { 'Content-Type': 'application/json' }
                 );
-
                 if (response.status == 404) {
-                    console.log('if (response.status == 404) {');
                     setError(404);
                     setCompanies([]);
                 } else {
-                    console.log('ELSE if (response.status == 404) {');
                     setError('');
                     setCompanies(await response.json());
                 }
@@ -58,7 +53,6 @@ function CompanyList({ showFavTab }) {
                 setError(err);
             }
         };
-
         const timer = setTimeout(() => {
             fetchData();
         }, 100);
@@ -67,15 +61,11 @@ function CompanyList({ showFavTab }) {
 
     React.useEffect(() => {
         if (!input) {
-            console.log(`    React.useEffect(() => {
-        if (!input) `);
             setCompanies([]);
         }
     }, [input]);
 
     const addRemoveFavCompanies = (company) => {
-        console.log(window.innerHeight);
-
         if (favCompanies.some((favCompany) => favCompany.sn == company.sn)) {
             let temp = favCompanies.filter((favCompany) => favCompany.sn !== company.sn);
             setFavCompanies(temp);

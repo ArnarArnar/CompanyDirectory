@@ -5,7 +5,6 @@ import starFull from '../assets/img/star-full.svg';
 
 export default function CompanyItem({ company, sendDataToParent, list, favCompanies }) {
     const { t } = useTranslation();
-
     var splitAddress;
     if (company.address.includes(',')) {
         splitAddress = company.address.split(',');
@@ -43,7 +42,6 @@ export default function CompanyItem({ company, sendDataToParent, list, favCompan
                                 <span>{company.sn}</span>
                             </div>
                         </div>
-
                         <button
                             id="favoriteContainer"
                             className="flex h-full ml-2"

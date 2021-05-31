@@ -5,22 +5,17 @@ import { useTranslation } from 'react-i18next';
 
 export default function ModalHeadlessButton({ searchOption, changeSearchOption, style }) {
     let [isOpen, setIsOpen] = useState(false);
-    const { t } = useTranslation();
     const modalRef = React.useRef(null);
+    const { t } = useTranslation();
 
     const openModal = () => setIsOpen(true);
     const closeModal = () => setIsOpen(false);
-
-    const getCurrentChecked = () => {
-        return true;
-    };
 
     return (
         <div className="inline-block group">
             <button
                 className={`${style} `}
                 onClick={() => {
-                    getCurrentChecked();
                     openModal();
                 }}>
                 <div>{t('change')}</div>
