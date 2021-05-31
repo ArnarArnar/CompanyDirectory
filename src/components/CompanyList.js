@@ -3,7 +3,7 @@ import useWindowDimensions from '../utils/windowDemensions';
 
 import CompanyItem from './CompanyItem';
 
-function CompanyList() {
+function CompanyList({ showFavTab }) {
     const [input, setInput] = React.useState('');
     const [companies, setCompanies] = React.useState([]);
     // eslint-disable-next-line no-unused-vars
@@ -93,9 +93,18 @@ function CompanyList() {
         return favCompanies.some((favCompany) => favCompany.sn == company.sn);
     };
 
+    const showList = (isFavList) => {
+        if (width > 768) {
+            return true;
+        } else if (isFavList) {
+            return showFavTab ? true : false;
+        }
+        return showFavTab ? false : true;
+    };
+
     return (
         <div className="flex justify-center min-h-screen bg-blue500 min-w-screen">
-            <div className="container max-w-5xl px-5 mx-auto">
+            <div className="container max-w-5xl px-5 mx-auto md:px-8">
                 <div className="pt-10 mb-3">
                     <input
                         onChange={handleChange}
@@ -105,37 +114,38 @@ function CompanyList() {
                     />
                 </div>
                 <div className="block md:flex ">
-                    <div id="search" className="w-full md:pr-2 md:w-1/2">
-                        <div className="relative w-full my-2 font-bold text-center text-blue800">
-                            NIÐURSTÖÐUR
-                        </div>
-                        {companies.length > 0
-                            ? companies.map((company) => {
-                                  if (isInFavCompanies(company) && width > 768) {
-                                      <CompanyItem
-                                          key={company.sn}
-                                          company={company}
-                                          sendDataToParent={addRemoveFavCompanies}
-                                          list="favCompany"
-                                          favCompanies={favCompanies}
-                                      />;
-                                  } else {
-                                      return (
+                    {showList(false) ? (
+                        <div id="search" className="w-full md:pr-4 md:w-1/2">
+                            <div className="relative w-full my-2 font-bold text-center text-blue800">
+                                NIÐURSTÖÐUR
+                            </div>
+                            {companies.length > 0
+                                ? companies.map((company) => {
+                                      if (isInFavCompanies(company) && width > 768) {
                                           <CompanyItem
                                               key={company.sn}
                                               company={company}
                                               sendDataToParent={addRemoveFavCompanies}
-                                              list="results"
+                                              list="favCompany"
                                               favCompanies={favCompanies}
-                                          />
-                                      );
-                                  }
-                              })
-                            : null}
-                    </div>
-
-                    {width > 768 ? (
-                        <div id="search" className="w-full md:w-1/2">
+                                          />;
+                                      } else {
+                                          return (
+                                              <CompanyItem
+                                                  key={company.sn}
+                                                  company={company}
+                                                  sendDataToParent={addRemoveFavCompanies}
+                                                  list="results"
+                                                  favCompanies={favCompanies}
+                                              />
+                                          );
+                                      }
+                                  })
+                                : null}
+                        </div>
+                    ) : null}
+                    {showList(true) ? (
+                        <div id="favorite" className="w-full md:pl-4 md:w-1/2">
                             <div className="relative w-full my-2 font-bold text-center text-blue800">
                                 UPPÁHALDS
                             </div>

@@ -4,11 +4,18 @@ import CompanyList from './components/CompanyList';
 import MobileNav from './components/MobileNav';
 
 function App() {
+    const [showFavTab, setShowFavTab] = React.useState(false);
+
+    const toggleTab = (action) => {
+        console.log(`action`, action);
+        setShowFavTab(action);
+    };
+
     return (
         <>
             <Header />
-            <CompanyList />
-            <MobileNav />
+            <CompanyList showFavTab={showFavTab} />
+            <MobileNav toggleTab={toggleTab} showFavTab={showFavTab} />
         </>
     );
 }
