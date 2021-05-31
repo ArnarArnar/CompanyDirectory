@@ -14,8 +14,6 @@ export default function CompanyItem({ company, sendDataToParent, list, favCompan
     }
 
     const isFavored = () => {
-        console.log(`list`, list);
-        console.log(`favCompanies`, favCompanies);
         if (list == 'favCompany') {
             return true;
         } else if (favCompanies.some((favCompany) => favCompany.sn == company.sn)) {

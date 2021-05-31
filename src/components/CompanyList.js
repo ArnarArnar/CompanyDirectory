@@ -45,7 +45,7 @@ function CompanyList({ showFavTab }) {
 
             myHeaders.append('Content-Type', 'application/json');
 
-            var raw = JSON.stringify({ name: input });
+            var raw = JSON.stringify({ name: input, filter: searchOption });
 
             var requestOptions = {
                 method: 'POST',
@@ -56,29 +56,33 @@ function CompanyList({ showFavTab }) {
 
             try {
                 let response = await fetch(apiUrl, requestOptions);
-                console.log(`response`, response);
+                //console.log(`response`, await response.json());
                 // Check your response for error this may not be response.error
                 if (response.status == 404) {
+                    console.log('if (response.status == 404) {');
                     setError(404);
                     setCompanies([]);
                 } else {
+                    console.log('ELSE if (response.status == 404) {');
                     setError('');
-                    setCompanies(await response.json());
+                    let data = await response.json();
+                    setCompanies(data);
                 }
             } catch (err) {
                 setError(err);
             }
-            console.log(`companies`, companies);
         };
         const timer = setTimeout(() => {
             fetchData();
         }, 300);
 
         return () => clearTimeout(timer);
-    }, [input]);
+    }, [input, searchOption]);
 
     React.useEffect(() => {
         if (!input) {
+            console.log(`    React.useEffect(() => {
+        if (!input) `);
             setCompanies([]);
         }
     }, [input]);
