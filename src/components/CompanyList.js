@@ -39,25 +39,12 @@ function CompanyList({ showFavTab }) {
 
     React.useEffect(() => {
         const fetchData = async () => {
-            const apiUrl = `http://localhost:3010/backend.php`;
-
-            var myHeaders = new Headers();
-
-            myHeaders.append('Content-Type', 'application/json');
-
-            var raw = JSON.stringify({ name: input, filter: searchOption });
-
-            var requestOptions = {
-                method: 'POST',
-                headers: myHeaders,
-                body: raw,
-                redirect: 'follow'
-            };
-
             try {
-                let response = await fetch(apiUrl, requestOptions);
-                //console.log(`response`, await response.json());
-                // Check your response for error this may not be response.error
+                let response = await fetch(
+                    `http://localhost:3010/backend2.php?name=${input}&filter=${searchOption}`,
+                    { 'Content-Type': 'application/json' }
+                );
+
                 if (response.status == 404) {
                     console.log('if (response.status == 404) {');
                     setError(404);
@@ -65,17 +52,16 @@ function CompanyList({ showFavTab }) {
                 } else {
                     console.log('ELSE if (response.status == 404) {');
                     setError('');
-                    let data = await response.json();
-                    setCompanies(data);
+                    setCompanies(await response.json());
                 }
             } catch (err) {
                 setError(err);
             }
         };
+
         const timer = setTimeout(() => {
             fetchData();
-        }, 300);
-
+        }, 100);
         return () => clearTimeout(timer);
     }, [input, searchOption]);
 
