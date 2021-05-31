@@ -2,5 +2,6 @@
     "header.label": "FYRIRTÆKJALEIT",
     "search.label": "Leit",
     "results.label": "NIÐURSTÖÐUR",
-    "favorite.label": "UPPÁHALDS"
+    "favorite.label": "UPPÁHALDS",
+    "deregistered.label": "Afskráð"
 }
