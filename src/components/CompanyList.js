@@ -1,5 +1,6 @@
 import React from 'react';
 import useWindowDimensions from '../utils/windowDimensions';
+
 import { useTranslation } from 'react-i18next';
 
 import RadioGroupModal from './RadioGroupModal';
@@ -12,6 +13,7 @@ function CompanyList({ showFavTab }) {
     // eslint-disable-next-line no-unused-vars
     const [error, setError] = React.useState();
     const [favCompanies, setFavCompanies] = React.useState([]);
+
     const { width } = useWindowDimensions();
     const { t } = useTranslation();
 
@@ -74,10 +76,6 @@ function CompanyList({ showFavTab }) {
         }
     };
 
-    const isInFavCompanies = (company) => {
-        return favCompanies.some((favCompany) => favCompany.sn == company.sn);
-    };
-
     const showList = (isFavList) => {
         if (width > 768) {
             return true;
@@ -119,25 +117,15 @@ function CompanyList({ showFavTab }) {
                     </div>
                     {companies.length > 0
                         ? companies.map((company) => {
-                              if (isInFavCompanies(company) && width > 768) {
+                              return (
                                   <CompanyItem
                                       key={company.sn}
                                       company={company}
                                       sendDataToParent={addRemoveFavCompanies}
-                                      list="favCompany"
+                                      list="results"
                                       favCompanies={favCompanies}
-                                  />;
-                              } else {
-                                  return (
-                                      <CompanyItem
-                                          key={company.sn}
-                                          company={company}
-                                          sendDataToParent={addRemoveFavCompanies}
-                                          list="results"
-                                          favCompanies={favCompanies}
-                                      />
-                                  );
-                              }
+                                  />
+                              );
                           })
                         : null}
                 </div>

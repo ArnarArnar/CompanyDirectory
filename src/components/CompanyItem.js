@@ -3,8 +3,12 @@ import { useTranslation } from 'react-i18next';
 import starThin from '../assets/img/star-thin.svg';
 import starFull from '../assets/img/star-full.svg';
 
+import useWindowDimensions from '../utils/windowDimensions';
+
 export default function CompanyItem({ company, sendDataToParent, list, favCompanies }) {
     const { t } = useTranslation();
+    const { width } = useWindowDimensions();
+
     var splitAddress;
     if (company.address.includes(',')) {
         splitAddress = company.address.split(',');
@@ -15,7 +19,7 @@ export default function CompanyItem({ company, sendDataToParent, list, favCompan
     const isFavored = () => {
         if (list == 'favCompany') {
             return true;
-        } else if (favCompanies.some((favCompany) => favCompany.sn == company.sn)) {
+        } else if (width < 768 && favCompanies.some((favCompany) => favCompany.sn == company.sn)) {
             return true;
         }
     };
