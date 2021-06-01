@@ -4,7 +4,7 @@ class API
 {
     function search()
     {
-        header("Access-Control-Allow-Origin: http://localhost:3000");
+        header("Access-Control-Allow-Origin: *");
         header('Content-Type: application/json');
         header("Access-Control-Allow-Headers: Access-Control-Allow-Headers, Access-Control-Allow-Methods, Content-Type");
 
@@ -15,12 +15,12 @@ class API
 
         $url = "https://apis.is/company?name=" . $search_params_encoded;
 
+        $headers = array("Content-Type: application/json");
         // Set URL
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_HTTPGET, true);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, {
-        "Content-Type: application/json"});
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
         // return the transfer as a string of the return value of  instead of outputting it directly
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
