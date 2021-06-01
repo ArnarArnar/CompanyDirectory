@@ -100,6 +100,76 @@ function CompanyList({ showFavTab }) {
         }
     };
 
+    const renderResults = () => {
+        if (showList(false)) {
+            return (
+                <div id="search" className="w-full md:pr-4 md:w-1/2">
+                    <div className="relative w-full h-10 my-3 font-bold leading-tight text-center text-blue800">
+                        {t('results.label')}
+                        <div className="flex items-center justify-center">
+                            <span className="pr-1.5 text-xs  font-medium">
+                                <div>{searchOptionDescription()}</div>
+                            </span>
+                            <RadioGroupModal
+                                searchOption={searchOption}
+                                changeSearchOption={changeSearchOption}
+                                style="self-center h-5  shadow px-1.5 text-xs font-black  rounded bg-grayLight text-blue900 "
+                            />
+                        </div>
+                    </div>
+                    {companies.length > 0
+                        ? companies.map((company) => {
+                              if (isInFavCompanies(company) && width > 768) {
+                                  <CompanyItem
+                                      key={company.sn}
+                                      company={company}
+                                      sendDataToParent={addRemoveFavCompanies}
+                                      list="favCompany"
+                                      favCompanies={favCompanies}
+                                  />;
+                              } else {
+                                  return (
+                                      <CompanyItem
+                                          key={company.sn}
+                                          company={company}
+                                          sendDataToParent={addRemoveFavCompanies}
+                                          list="results"
+                                          favCompanies={favCompanies}
+                                      />
+                                  );
+                              }
+                          })
+                        : null}
+                </div>
+            );
+        }
+    };
+
+    const renderFavorite = () => {
+        if (showList(true)) {
+            return (
+                <div id="favorite" className="w-full md:pl-4 md:w-1/2">
+                    <div className="relative w-full h-10 my-3 font-bold leading-tight text-center text-blue800">
+                        {t('favorite.label')}
+                    </div>
+                    {favCompanies.length > 0
+                        ? favCompanies.map((company) => {
+                              return (
+                                  <CompanyItem
+                                      key={company.sn}
+                                      company={company}
+                                      sendDataToParent={addRemoveFavCompanies}
+                                      list="favCompany"
+                                      favCompanies={favCompanies}
+                                  />
+                              );
+                          })
+                        : null}
+                </div>
+            );
+        }
+    };
+
     return (
         <div className="flex justify-center min-h-screen bg-blue500 min-w-screen">
             <div className="container max-w-5xl px-5 mx-auto md:px-8">
@@ -112,66 +182,8 @@ function CompanyList({ showFavTab }) {
                     />
                 </div>
                 <div className="block md:flex ">
-                    {showList(false) ? (
-                        <div id="search" className="w-full md:pr-4 md:w-1/2">
-                            <div className="relative w-full h-10 my-3 font-bold leading-tight text-center text-blue800">
-                                {t('results.label')}
-                                <div className="flex items-center justify-center">
-                                    <span className="pr-1.5 text-xs  font-medium">
-                                        <div>{searchOptionDescription()}</div>
-                                    </span>
-                                    <RadioGroupModal
-                                        searchOption={searchOption}
-                                        changeSearchOption={changeSearchOption}
-                                        style="self-center h-5  shadow px-1.5 text-xs font-black  rounded bg-grayLight text-blue900 "
-                                    />
-                                </div>
-                            </div>
-                            {companies.length > 0
-                                ? companies.map((company) => {
-                                      if (isInFavCompanies(company) && width > 768) {
-                                          <CompanyItem
-                                              key={company.sn}
-                                              company={company}
-                                              sendDataToParent={addRemoveFavCompanies}
-                                              list="favCompany"
-                                              favCompanies={favCompanies}
-                                          />;
-                                      } else {
-                                          return (
-                                              <CompanyItem
-                                                  key={company.sn}
-                                                  company={company}
-                                                  sendDataToParent={addRemoveFavCompanies}
-                                                  list="results"
-                                                  favCompanies={favCompanies}
-                                              />
-                                          );
-                                      }
-                                  })
-                                : null}
-                        </div>
-                    ) : null}
-                    {showList(true) ? (
-                        <div id="favorite" className="w-full md:pl-4 md:w-1/2">
-                            <div className="relative w-full h-10 my-3 font-bold leading-tight text-center text-blue800">
-                                {t('favorite.label')}
-                            </div>
-                            {favCompanies.length > 0
-                                ? favCompanies.map((company) => {
-                                      return (
-                                          <CompanyItem
-                                              key={company.sn}
-                                              company={company}
-                                              sendDataToParent={addRemoveFavCompanies}
-                                              list="favCompany"
-                                              favCompanies={favCompanies}
-                                          />
-                                      );
-                                  })
-                                : null}
-                        </div>
-                    ) : null}
+                    {renderResults()}
+                    {renderFavorite()}
                 </div>
             </div>
         </div>
