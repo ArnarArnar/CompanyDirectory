@@ -8,10 +8,11 @@ function App() {
     const [showFavTab, setShowFavTab] = React.useState(false);
 
     const toggleTab = (action) => setShowFavTab(action);
+    const showSearchTab = () => setShowFavTab(false);
 
     return (
         <Suspense fallback={null}>
-            <Header />
+            <Header showSearchTab={showSearchTab} />
             <CompanyList showFavTab={showFavTab} />
             <MobileNav toggleTab={toggleTab} showFavTab={showFavTab} />
         </Suspense>
