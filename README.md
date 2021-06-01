@@ -1,8 +1,12 @@
-# Getting Started with Create React App
+# Company directory
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a simple website that allows users to search the Icelandic company directory. API calls go through an PHP proxy server.
 
-## Available Scripts
+## To run this project
+
+Its recommended to open the project as an workspace in and use the PHP server extension to run the proxy server.
+
+
 
 In the project directory, you can run:
 
