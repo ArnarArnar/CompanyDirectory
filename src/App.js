@@ -9,12 +9,12 @@ function App() {
 
     const toggleTab = (action) => setShowFavTab(action);
     // If header text is clicked and in mobile mode, switch to default tab
-    const showSearchTab = () => setShowFavTab(false);
+    const setShowSearchTab = () => setShowFavTab(false);
 
     return (
         <Suspense fallback={null}>
-            <Header showSearchTab={showSearchTab} />
-            <CompanyList showFavTab={showFavTab} />
+            <Header showSearchTab={setShowSearchTab} />
+            <CompanyList showFavTab={showFavTab} setShowSearchTab={setShowSearchTab} />
             <MobileNav toggleTab={toggleTab} showFavTab={showFavTab} />
         </Suspense>
     );

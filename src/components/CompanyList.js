@@ -7,7 +7,7 @@ import RadioGroupModal from './RadioGroupModal';
 import CompanyItem from './CompanyItem';
 import Loader from './loader';
 
-function CompanyList({ showFavTab }) {
+function CompanyList({ showFavTab, setShowSearchTab }) {
     const [input, setInput] = useState('');
     const [companies, setCompanies] = useState([]);
     const [favCompanies, setFavCompanies] = useState([]);
@@ -55,6 +55,7 @@ function CompanyList({ showFavTab }) {
         if (temp.slice(temp.length - 3) !== '%20') {
             setInput(temp);
         }
+        setShowSearchTab();
     };
 
     useEffect(() => {
