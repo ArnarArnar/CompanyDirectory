@@ -20,7 +20,7 @@ const Header = ({ showSearchTab }) => {
                     {t('header.label')}
                 </div>
                 <button
-                    className="self-center w-6 h-6 font-black leading-relaxed rounded bg-grayLight text-blue800"
+                    className="self-center w-6 h-6 font-black border rounded bg-grayLight text-blue800"
                     onClick={() => changeLanguage()}>
                     {lang == 'is' ? 'IS' : 'EN'}
                 </button>
