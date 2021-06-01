@@ -8,6 +8,7 @@ function App() {
     const [showFavTab, setShowFavTab] = React.useState(false);
 
     const toggleTab = (action) => setShowFavTab(action);
+    // If header text is clicked and in mobile mode, switch to default tab
     const showSearchTab = () => setShowFavTab(false);
 
     return (

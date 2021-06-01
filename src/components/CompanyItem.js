@@ -16,6 +16,7 @@ export default function CompanyItem({ company, sendDataToParent, list, favCompan
         splitAddress = company.address.split('  ');
     }
 
+    // Hide favorite items in result list when in desktop mode but show them in mobile view
     const isFavored = () => {
         if (list == 'favCompany') {
             return true;
