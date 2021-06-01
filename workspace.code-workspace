@@ -1,0 +1,8 @@
+{
+  "folders": [
+    {
+      "path": "."
+    }
+  ],
+  "settings": { "phpserver.port": 3010 }
+}
