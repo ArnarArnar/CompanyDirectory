@@ -190,7 +190,7 @@ function CompanyList({ showFavTab }) {
                         className="relative w-full px-3 py-3 text-xl leading-normal border-0 rounded shadow outline-none bg-grayLight placeholder-blueGray-400 text-blue700 hover:text-blue800 focus:outline-none focus:ring"
                     />
                 </div>
-                <div className="block md:flex ">
+                <div className="block mb-32 md:mb-16 md:flex">
                     {renderResults()}
                     {renderFavorite()}
                 </div>
