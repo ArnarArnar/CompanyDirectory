@@ -6,6 +6,7 @@ class API
     {
         header("Access-Control-Allow-Origin: http://localhost:3000");
         header('Content-Type: application/json');
+        header('Access-Control-Allow-Methods: POST');
         header("Access-Control-Allow-Headers: Access-Control-Allow-Headers, Access-Control-Allow-Methods, Content-Type");
 
         $headers = array(

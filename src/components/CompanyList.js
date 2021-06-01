@@ -39,7 +39,7 @@ function CompanyList({ showFavTab }) {
         const fetchData = async () => {
             try {
                 let response = await fetch(
-                    `http://localhost:3010/backend.php?name=${input}&filter=${searchOption}`,
+                    `http://localhost:3010/backend/proxy.php?name=${input}&filter=${searchOption}`,
                     { 'Content-Type': 'application/json' }
                 );
                 if (response.status == 404) {
