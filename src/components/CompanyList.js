@@ -72,11 +72,8 @@ function CompanyList({ showFavTab }) {
 
     const addRemoveFavCompanies = (company) => {
         if (favCompanies.some((favCompany) => favCompany.sn == company.sn)) {
-            setFavCompanies(
-                favCompanies.filter((favCompany) => {
-                    favCompany.sn !== company.sn;
-                })
-            );
+            let temp = favCompanies.filter((favCompany) => favCompany.sn !== company.sn);
+            setFavCompanies(temp);
         } else {
             setFavCompanies((oldArray) => [...oldArray, company]);
         }
@@ -105,6 +102,10 @@ function CompanyList({ showFavTab }) {
         }
     };
 
+    const isInFavCompanies = (company) => {
+        return favCompanies.some((favCompany) => favCompany.sn == company.sn);
+    };
+
     const renderResults = () => {
         if (showList(false)) {
             return (
@@ -124,17 +125,28 @@ function CompanyList({ showFavTab }) {
                     </div>
                     {companies.length > 0
                         ? companies.map((company) => {
-                              return (
+                              if (isInFavCompanies(company) && width > 768) {
                                   <CompanyItem
                                       key={company.sn}
                                       company={company}
                                       sendDataToParent={addRemoveFavCompanies}
-                                      list="results"
+                                      list="favCompany"
                                       favCompanies={favCompanies}
-                                  />
-                              );
+                                  />;
+                              } else {
+                                  return (
+                                      <CompanyItem
+                                          key={company.sn}
+                                          company={company}
+                                          sendDataToParent={addRemoveFavCompanies}
+                                          list="results"
+                                          favCompanies={favCompanies}
+                                      />
+                                  );
+                              }
                           })
                         : null}
+
                     {isLoading ? <Loader /> : null}
                     {hasError && <div className="text-center mt-14 text-blue800">{t('error')}</div>}
                 </div>
