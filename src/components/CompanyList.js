@@ -5,14 +5,16 @@ import { useTranslation } from 'react-i18next';
 
 import RadioGroupModal from './RadioGroupModal';
 import CompanyItem from './CompanyItem';
+import Loader from './loader';
 
 function CompanyList({ showFavTab }) {
     const [input, setInput] = React.useState('');
     const [companies, setCompanies] = React.useState([]);
+    const [favCompanies, setFavCompanies] = React.useState([]);
     const [searchOption, setSearchOption] = React.useState('BOTH');
     // eslint-disable-next-line no-unused-vars
-    const [error, setError] = React.useState();
-    const [favCompanies, setFavCompanies] = React.useState([]);
+    const [hasError, setHasError] = React.useState(false);
+    const [isLoading, setIsLoading] = React.useState(false);
 
     const { width } = useWindowDimensions();
     const { t } = useTranslation();
@@ -39,20 +41,21 @@ function CompanyList({ showFavTab }) {
 
     React.useEffect(() => {
         const fetchData = async () => {
+            setIsLoading(true);
+            setHasError(false);
             try {
                 let response = await fetch(
                     `http://localhost:3010/backend/proxy.php?name=${input}&filter=${searchOption}`,
                     { 'Content-Type': 'application/json' }
                 );
                 if (response.status == 404) {
-                    setError(404);
                     setCompanies([]);
                 } else {
-                    setError('');
                     setCompanies(await response.json());
                 }
+                setIsLoading(false);
             } catch (err) {
-                setError(err);
+                setHasError(true);
             }
         };
         const timer = setTimeout(() => {
@@ -111,7 +114,7 @@ function CompanyList({ showFavTab }) {
                             <RadioGroupModal
                                 searchOption={searchOption}
                                 changeSearchOption={changeSearchOption}
-                                style="self-center h-5  shadow px-1.5 text-xs font-black  rounded bg-grayLight text-blue900 "
+                                style="self-center h-5   px-1.5 text-xs font-bold border border-blue900 rounded  text-blue900 "
                             />
                         </div>
                     </div>
@@ -128,6 +131,10 @@ function CompanyList({ showFavTab }) {
                               );
                           })
                         : null}
+                    {isLoading ? <Loader /> : null}
+                    {hasError && (
+                        <div className="text-center mt-14 text-blue800">Something went wrong.</div>
+                    )}
                 </div>
             );
         }

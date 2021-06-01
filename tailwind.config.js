@@ -19,7 +19,11 @@ module.exports = {
             fontFamily: {
                 sans: ['Roboto', ...defaultTheme.fontFamily.sans]
             },
-            height: { max: 'max-content' }
+            height: { max: 'max-content' },
+            animation: {
+                bounce200: 'bounce 1s infinite 200ms',
+                bounce400: 'bounce 1s infinite 400ms'
+            }
         },
         screens: {
             sm: '640px',

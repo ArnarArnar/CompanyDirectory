@@ -30491,6 +30491,14 @@ input[type='radio']:checked + label {
   animation: bounce 1s infinite;
 }
 
+.animate-bounce200 {
+  animation: bounce 1s infinite 200ms;
+}
+
+.animate-bounce400 {
+  animation: bounce 1s infinite 400ms;
+}
+
 .mix-blend-normal {
   mix-blend-mode: normal;
 }
@@ -60527,6 +60535,14 @@ input[type='radio']:checked + label {
   .sm\:animate-bounce {
     animation: bounce 1s infinite;
   }
+
+  .sm\:animate-bounce200 {
+    animation: bounce 1s infinite 200ms;
+  }
+
+  .sm\:animate-bounce400 {
+    animation: bounce 1s infinite 400ms;
+  }
 }
 
 @media (min-width: 768px) {
@@ -90356,6 +90372,14 @@ input[type='radio']:checked + label {
 
   .md\:animate-bounce {
     animation: bounce 1s infinite;
+  }
+
+  .md\:animate-bounce200 {
+    animation: bounce 1s infinite 200ms;
+  }
+
+  .md\:animate-bounce400 {
+    animation: bounce 1s infinite 400ms;
   }
 }
 
@@ -120187,6 +120211,14 @@ input[type='radio']:checked + label {
   .lg\:animate-bounce {
     animation: bounce 1s infinite;
   }
+
+  .lg\:animate-bounce200 {
+    animation: bounce 1s infinite 200ms;
+  }
+
+  .lg\:animate-bounce400 {
+    animation: bounce 1s infinite 400ms;
+  }
 }
 
 @media (min-width: 1280px) {
@@ -150017,6 +150049,14 @@ input[type='radio']:checked + label {
   .xl\:animate-bounce {
     animation: bounce 1s infinite;
   }
+
+  .xl\:animate-bounce200 {
+    animation: bounce 1s infinite 200ms;
+  }
+
+  .xl\:animate-bounce400 {
+    animation: bounce 1s infinite 400ms;
+  }
 }
 
 @media (min-width: 1536px) {
@@ -179846,5 +179886,13 @@ input[type='radio']:checked + label {
 
   .\32xl\:animate-bounce {
     animation: bounce 1s infinite;
+  }
+
+  .\32xl\:animate-bounce200 {
+    animation: bounce 1s infinite 200ms;
+  }
+
+  .\32xl\:animate-bounce400 {
+    animation: bounce 1s infinite 400ms;
   }
 }
