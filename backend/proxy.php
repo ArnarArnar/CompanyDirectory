@@ -6,27 +6,21 @@ class API
     {
         header("Access-Control-Allow-Origin: http://localhost:3000");
         header('Content-Type: application/json');
-        header('Access-Control-Allow-Methods: POST');
         header("Access-Control-Allow-Headers: Access-Control-Allow-Headers, Access-Control-Allow-Methods, Content-Type");
 
-        $headers = array(
-            "Content-Type: application/json",
-        );
-
-        // Get the search value from the url
+        // Get the search and filter values from the url
         $search_params = isset($_GET['name']) ? $_GET['name'] : die();
-        // Get the search value from the url
         $filter = isset($_GET['filter']) ? $_GET['filter'] : die();
-        // $search_params = str_replace('"', '', (string) $search_params);
         $search_params_encoded = rawurlencode($search_params);
 
         $url = "https://apis.is/company?name=" . $search_params_encoded;
 
-        $ch = curl_init($url);
         // Set URL
+        $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_HTTPGET, true);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, {
+        "Content-Type: application/json"});
         // return the transfer as a string of the return value of  instead of outputting it directly
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
