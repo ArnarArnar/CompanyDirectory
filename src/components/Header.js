@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 
-const Header = ({ showSearchTab }) => {
+const Header = ({ setShowSearchTab }) => {
     const { t, i18n } = useTranslation();
     const [lang, setLang] = React.useState('en');
 
@@ -15,7 +15,7 @@ const Header = ({ showSearchTab }) => {
             <div className="container flex justify-between max-w-5xl px-5 mx-auto md:px-8">
                 <div className="w-6"></div>
                 <div
-                    onClick={() => showSearchTab()}
+                    onClick={() => setShowSearchTab()}
                     className="ml-2 overflow-hidden text-3xl font-semibold leading-normal text-grayLight ">
                     {t('header.label')}
                 </div>
