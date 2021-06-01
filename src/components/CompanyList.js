@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import useWindowDimensions from '../utils/windowDimensions';
 
 import { useTranslation } from 'react-i18next';
@@ -8,38 +8,17 @@ import CompanyItem from './CompanyItem';
 import Loader from './loader';
 
 function CompanyList({ showFavTab }) {
-    const [input, setInput] = React.useState('');
-    const [companies, setCompanies] = React.useState([]);
-    const [favCompanies, setFavCompanies] = React.useState([]);
-    const [searchOption, setSearchOption] = React.useState('BOTH');
-    // eslint-disable-next-line no-unused-vars
-    const [hasError, setHasError] = React.useState(false);
-    const [isLoading, setIsLoading] = React.useState(false);
+    const [input, setInput] = useState('');
+    const [companies, setCompanies] = useState([]);
+    const [favCompanies, setFavCompanies] = useState([]);
+    const [searchOption, setSearchOption] = useState('BOTH');
+    const [hasError, setHasError] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
 
     const { width } = useWindowDimensions();
     const { t } = useTranslation();
 
-    const handleChange = (event) => {
-        let temp = event.target.value.toLowerCase();
-        if (temp.slice(temp.length - 3) !== '%20') {
-            setInput(temp);
-        }
-    };
-
-    React.useEffect(() => {
-        const temp = localStorage.getItem('favCompanies');
-        const loadedFavCompanies = JSON.parse(temp);
-        if (loadedFavCompanies) {
-            setFavCompanies(loadedFavCompanies);
-        }
-    }, []);
-
-    React.useEffect(() => {
-        const json = JSON.stringify(favCompanies);
-        localStorage.setItem('favCompanies', json);
-    }, [favCompanies]);
-
-    React.useEffect(() => {
+    useEffect(() => {
         const fetchData = async () => {
             setIsLoading(true);
             setHasError(false);
@@ -64,21 +43,46 @@ function CompanyList({ showFavTab }) {
         return () => clearTimeout(timer);
     }, [input, searchOption]);
 
-    React.useEffect(() => {
+    useEffect(() => {
         if (!input) {
             setCompanies([]);
         }
     }, [input]);
 
+    const handleChange = (event) => {
+        let temp = event.target.value.toLowerCase();
+        // The API returns 404 if there is space at the end of search query
+        if (temp.slice(temp.length - 3) !== '%20') {
+            setInput(temp);
+        }
+    };
+
+    useEffect(() => {
+        const temp = localStorage.getItem('favCompanies');
+        const loadedFavCompanies = JSON.parse(temp);
+        if (loadedFavCompanies) {
+            setFavCompanies(loadedFavCompanies);
+        }
+    }, []);
+
+    useEffect(() => {
+        const json = JSON.stringify(favCompanies);
+        localStorage.setItem('favCompanies', json);
+    }, [favCompanies]);
+
     const addRemoveFavCompanies = (company) => {
         if (favCompanies.some((favCompany) => favCompany.sn == company.sn)) {
-            let temp = favCompanies.filter((favCompany) => favCompany.sn !== company.sn);
-            setFavCompanies(temp);
+            setFavCompanies(
+                favCompanies.filter((favCompany) => {
+                    favCompany.sn !== company.sn;
+                })
+            );
         } else {
             setFavCompanies((oldArray) => [...oldArray, company]);
         }
     };
 
+    // Show both lists in desktop mode, one list in mobile
     const showList = (isFavList) => {
         if (width > 768) {
             return true;

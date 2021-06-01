@@ -26,13 +26,13 @@ export default function CompanyItem({ company, sendDataToParent, list, favCompan
 
     return (
         <div className="w-full ">
-            <div id="card" className="flex px-3 py-2 mb-2 bg-gray-200 rounded-lg">
+            <div id="card" className="flex px-4 py-2 mb-2 bg-gray-200 rounded-lg">
                 <div className="flex flex-col justify-between w-full ">
                     <div className="flex flex-row justify-between">
                         <div className="pr-1 pt-0.5 text-lg font-bold text-blue700">
                             {company.name}
                         </div>
-                        <div className="text-sm font-medium text-blue700">
+                        <div className="text-sm font-medium leading-7 text-blue700">
                             {company.active ? '' : `${t('deregistered.label')}`}
                         </div>
                     </div>
@@ -52,17 +52,17 @@ export default function CompanyItem({ company, sendDataToParent, list, favCompan
                             onClick={() => {
                                 sendDataToParent(company);
                             }}>
-                            <div className="relative self-center pb-16 pr-16 mb-1 overflow-hidden rounded">
+                            <div className="relative self-center mb-1 overflow-hidden rounded pb-14 pr-14">
                                 {isFavored() ? (
                                     <img
                                         alt="StarFull"
-                                        className="absolute bottom-0 right-0 object-cover w-11/12 h--11/12 "
+                                        className="absolute bottom-0 right-0 object-cover w-full"
                                         src={starFull}
                                     />
                                 ) : (
                                     <img
                                         alt="StarThin"
-                                        className="absolute bottom-0 right-0 object-cover w-11/12 h--11/12 "
+                                        className="absolute bottom-0 right-0 object-cover w-full"
                                         src={starThin}
                                     />
                                 )}
