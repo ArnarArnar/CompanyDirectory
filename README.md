@@ -6,6 +6,4 @@ This is a simple website that allows users to search the Icelandic company direc
 
 It is recommended to run the proxy server with the "PHP server" VScode extension.
 
-`npm install` & `npm run build` & `npm run start` to start the client.
-
-Open [http://localhost:3001](http://localhost:3001) to view it in the browser.
+`npm install` and then `npm run start` to view in development mode or `npm run build` to build the app for production to the build folder.
