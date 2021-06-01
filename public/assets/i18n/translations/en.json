@@ -5,7 +5,10 @@
     "favorite.label": "FAVORITE",
     "deregistered.label": "Deregistered",
     "change": "CHANGE",
-    "searchOptionBoth": "Registered and deregistered",
-    "searchOptionRegistered": "Registered only",
-    "searchOptionDeregistered": "Deregistered only"
+    "searchOptionBoth": "Active and deregistered",
+    "searchOptionRegistered": "Active only",
+    "searchOptionDeregistered": "Deregistered only",
+    "searchOptionRegistered.modal": "Active",
+    "searchOptionDeregistered.modal": "Deregistered",
+    "error": "Something went wrong..."
 }

@@ -132,9 +132,7 @@ function CompanyList({ showFavTab }) {
                           })
                         : null}
                     {isLoading ? <Loader /> : null}
-                    {hasError && (
-                        <div className="text-center mt-14 text-blue800">Something went wrong.</div>
-                    )}
+                    {hasError && <div className="text-center mt-14 text-blue800">{t('error')}</div>}
                 </div>
             );
         }

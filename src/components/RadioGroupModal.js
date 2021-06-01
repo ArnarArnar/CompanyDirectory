@@ -94,7 +94,7 @@ export default function ModalHeadlessButton({ searchOption, changeSearchOption, 
                                             <label
                                                 htmlFor="radio2"
                                                 className="flex items-center justify-between text-xl text-gray-300 transition cursor-pointer select-none hover:text-gray-200">
-                                                {t('searchOptionRegistered')}
+                                                {t('searchOptionRegistered.modal')}
                                                 <span className="inline-block w-8 h-8 border-2 rounded-full shadow-inner border-blue500 flex-no-shrink"></span>
                                             </label>
                                         </button>
@@ -116,7 +116,7 @@ export default function ModalHeadlessButton({ searchOption, changeSearchOption, 
                                             <label
                                                 htmlFor="radio3"
                                                 className="flex items-center justify-between text-xl text-gray-300 transition cursor-pointer select-none hover:text-gray-200">
-                                                {t('searchOptionDeregistered')}
+                                                {t('searchOptionDeregistered.modal')}
                                                 <span className="inline-block w-8 h-8 border-2 border-gray-400 rounded-full flex-no-shrink"></span>
                                             </label>
                                         </button>
